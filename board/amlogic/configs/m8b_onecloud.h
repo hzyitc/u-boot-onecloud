@@ -176,7 +176,7 @@
 // =============================================================================
 #define CONFIG_PREBOOT				"run prepare_video; run check_usbburn; print 'Waiting for autoboot...'"
 #define CONFIG_BOOTDELAY			3
-#define CONFIG_BOOTCOMMAND			"print 'Autobooting...'; run boot_usb_armbian; run boot_sdcard_armbian; run boot_emmc_armbian; print 'Failed to boot'; "
+#define CONFIG_BOOTCOMMAND			"print 'Autobooting...'; run boot_emmc_armbian; print 'Failed to boot'; "
 #define CONFIG_HOSTNAME				"onecloud"
 #define CONFIG_ETHADDR				00:15:18:01:81:31
 #define CONFIG_IPADDR				192.168.1.150
@@ -234,19 +234,6 @@
 		"mmc rescan 1; " \
 		"setenv bootdev 'mmc 1'; " \
 		"fatload ${bootdev} ${loadaddr} boot.scr && autoscr ${loadaddr}; " \
-		"print 'Fail'; " \
-		"\0" \
-	"boot_sdcard_armbian=" \
-		"print -n 'Try to boot from SDCard...'; " \
-		"mmc rescan 0; " \
-		"setenv bootdev 'mmc 0'; " \
-		"fatload ${bootdev} ${loadaddr} boot.scr && autoscr ${loadaddr}; " \
-		"print 'Fail'; " \
-		"\0" \
-	"boot_usb_armbian=" \
-		"print -n 'Try to boot from USB...'; " \
-		"setenv bootdev 'usb 0'; " \
-		"usb start && fatload ${bootdev} ${loadaddr} boot.scr && autoscr ${loadaddr}; " \
 		"print 'Fail'; " \
 		"\0" \
 	""
